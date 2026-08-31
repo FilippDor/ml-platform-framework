@@ -13,10 +13,15 @@ Scaffold a new ML project. Steps:
    directory named `ml-<domain-lowercase>-<project-name>`.
 3. Remove the template's `.git` history and `git init` a fresh repo, so
    this becomes a new independent repo, not a fork tracking the template.
-4. Set the required environment variables in a local `.env` (never commit
-   this): `PROJECT_NAME` (UPPER_SNAKE_CASE, matches Section 12.2 of the
-   platform scoping doc), `PROJECT_OWNER`, `PROJECT_DOMAIN`, `PROJECT_TYPE`,
-   `ML_ENVIRONMENT=DEV`.
+4. Fill in **`project.yaml`** at the repo root — the single config file that
+   drives every module and script. Set `project.name` (UPPER_SNAKE_CASE,
+   matches Section 12.2 of the platform scoping doc), `project.owner`,
+   `project.domain`, `project.type`, and `environment: DEV`. Keep the
+   `snowflake:` block on the platform defaults unless the account differs.
+   Fill the `features:` block from the project's real source columns.
+   Do **not** put secrets here — the Snowflake password lives in
+   `~/.snowflake/connections.toml`. `.env` is optional and holds only the
+   three env-var overrides (see `.env.example`).
 5. Copy `platform-framework/VERSION`'s current content into this new
    project's `.framework-version` file — overwrite the template's stale
    copy with whatever `platform-framework` is actually at right now. This
